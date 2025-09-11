@@ -7,8 +7,6 @@ namespace ProCeur.API.Shared
 {
     public partial class ApplicationDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options) 
         {
