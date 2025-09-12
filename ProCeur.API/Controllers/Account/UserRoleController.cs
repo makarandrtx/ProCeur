@@ -10,15 +10,21 @@ namespace ProCeur.API.Controllers.Account
         public UserRoleController(IMediator mediator) : base(mediator) { }
 
         [HttpGet("GetAllUserRoles")]
-        public async Task<ObjectResult> GetAllUserRoles()
+        public async Task<ObjectResult> GetAllUserRoles(GetAllUserRolesQuery getAllUserRoles)
         {
-            return await Ok<GetAllUserRolesQuery>(null);
+            return await Ok(getAllUserRoles);
         }
 
         [HttpPost("CreateUserRole")]
-        public async Task<ObjectResult> CreateUserRole()
+        public async Task<ObjectResult> CreateUserRole(CreateUserRoleCommand createUserRole)
         {
-            return await Ok<CreateUserRoleCommand>(null);
+            return await Ok(createUserRole);
+        }
+
+        [HttpPost("UpdateUserRole")]
+        public async Task<ObjectResult> UpdateUserRole(UpdateUserRoleCommand updateUserRole)
+        {
+            return await Ok(updateUserRole);
         }
     }
 }
