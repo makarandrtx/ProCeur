@@ -16,8 +16,8 @@ namespace ProCeur.API.Controllers
 
         public async Task<ObjectResult> Ok<T>(T request = null) where T : class
         {
-            var model = DeserializeData<T>(request != null ? request.ToString() : "{}");
-            var response = await _mediatR.Send(model);
+            //var model = DeserializeData<T>(request != null ? request.ToString() : "{}");
+            var response = await _mediatR.Send(request);
             return new OkObjectResult(response);
         }
 
