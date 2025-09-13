@@ -2,6 +2,7 @@
 
 namespace ProCeur.API.Database.EntityModels.Admin
 {
+    [Table("Users", Schema = "Admin")]
     public class User 
     {
         public Guid Id { get; set; }
