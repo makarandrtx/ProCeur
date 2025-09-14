@@ -9,7 +9,7 @@ namespace ProCeur.API.Controllers.Account
     {
         public UserRoleController(IMediator mediator) : base(mediator) { }
 
-        [HttpGet("GetAllUserRoles")]
+        [HttpPost("GetAllUserRoles")]
         public async Task<ObjectResult> GetAllUserRoles(GetAllUserRolesQuery getAllUserRoles)
         {
             return await Ok(getAllUserRoles);
