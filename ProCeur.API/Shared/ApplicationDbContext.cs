@@ -15,6 +15,7 @@ namespace ProCeur.API.Shared
 
         //add DbSets for Entity Models here
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
         //add users dbset next
 
@@ -22,6 +23,7 @@ namespace ProCeur.API.Shared
         {
             //left blank for now, as no seed-data required.
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
         }
 
