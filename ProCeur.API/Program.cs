@@ -8,16 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddSwaggerGen(builder.Configuration); //this is swagger with JWT authorization
 builder.Services.AddApplicationLayer();
 builder.Services.ConfigurePostgreSqlServer(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
