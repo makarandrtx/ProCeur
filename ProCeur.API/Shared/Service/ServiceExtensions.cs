@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using ProCeur.API.Repositories;
 using ProCeur.API.Shared.Interface;
 using System.Reflection;
@@ -38,6 +39,38 @@ namespace ProCeur.API.Shared.Service
             //hardcoded for now.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql("Host=localhost;Port=5431;Database=ProCeur-DB;Username=postgres;Password=password"));
+        }
+
+        public static void AddSwaggerGen(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerGen(swaggerConfig => {
+                swaggerConfig.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "ProCeur.API",
+                    Version = "v1"
+                });
+                swaggerConfig.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
+                });
+                swaggerConfig.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme {
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                }
+                );
+            });
         }
     }
 }
